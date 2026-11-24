@@ -1,0 +1,14 @@
+{
+  "domain": "coop_schweiz",
+  "name": "Coop Schweiz",
+  "after_dependencies": ["frontend"],
+  "codeowners": ["@Lokutos"],
+  "config_flow": true,
+  "dependencies": ["http", "websocket_api"],
+  "documentation": "https://github.com/Lokutos/ha-coop-schweiz",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Lokutos/ha-coop-schweiz/issues",
+  "requirements": [],
+  "version": "0.2.3"
+}

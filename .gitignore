@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Private Analyse-Skripte samt Zugangsdaten und Mitschnitten: bleiben lokal
+/tools/
+*.token
+.env
+
+# Werkzeugspezifisches (bleibt lokal)
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+GEMINI.md
+.gemini/
+.agents/
+.idea/
+.vscode/
+
+# Betriebssystem
+Thumbs.db
+.DS_Store

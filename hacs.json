@@ -1,0 +1,6 @@
+{
+  "name": "Coop Schweiz",
+  "render_readme": true,
+  "country": ["CH"],
+  "homeassistant": "2024.11.0"
+}

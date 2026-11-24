@@ -1,0 +1,3 @@
+# Brings Home Assistant, pytest and aiohttp. Without it (only pytest and
+# aiohttp installed) the Home Assistant tests in tests/test_ha.py are skipped.
+pytest-homeassistant-custom-component

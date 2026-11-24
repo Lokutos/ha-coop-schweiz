@@ -1,0 +1,82 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Coop Schweiz – sign in",
+        "description": "1. Open the sign-in page in a browser **on a computer** (not on the phone, otherwise the Coop app takes over the sign-in) and sign in with your Supercard ID:\n\n[Open the Supercard ID sign-in]({auth_url})\n\n2. After signing in you land on an error page. That is expected. Copy its **full address** from the address bar (it contains `code=`) and paste it below right away. The code is only valid for a short time.",
+        "data": {
+          "redirect_url": "Address with code"
+        },
+        "data_description": {
+          "redirect_url": "The complete address of the page shown after signing in."
+        }
+      },
+      "list": {
+        "title": "Choose shopping list",
+        "data": {
+          "list_id": "Shopping list"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Coop Schweiz – sign in again",
+        "description": "The sign-in has expired. Open the sign-in page in a browser **on a computer** and sign in with the same Supercard ID:\n\n[Open the Supercard ID sign-in]({auth_url})\n\nThen copy the **full address** of the error page (it contains `code=`) and paste it below right away.",
+        "data": {
+          "redirect_url": "Address with code"
+        },
+        "data_description": {
+          "redirect_url": "The complete address of the page shown after signing in."
+        }
+      }
+    },
+    "error": {
+      "auth": "The sign-in was rejected or the code has expired. Open the link again and paste the fresh address right away.",
+      "invalid_code": "No code found in the address. Copy the full address of the page shown after signing in.",
+      "wrong_state": "This address belongs to another sign-in attempt. Use the link shown in this dialog.",
+      "cannot_connect": "The Coop servers could not be reached. Please try again later.",
+      "api_error": "The Coop servers returned an unexpected answer. See the log for details.",
+      "no_lists": "No shopping list found on this account. Create one in the Coop app first.",
+      "unknown": "Unexpected error. See the log for details."
+    },
+    "abort": {
+      "already_configured": "This list is already set up.",
+      "reauth_successful": "Signed in again.",
+      "wrong_account": "This Supercard ID has no access to the list of this entry. Sign in with the account used before."
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "The Coop sign-in has expired. Please sign in again."
+    },
+    "item_gone": {
+      "message": "This product no longer exists on the Coop list."
+    },
+    "communication_error": {
+      "message": "The Coop list could not be changed: {error}"
+    },
+    "empty_name": {
+      "message": "The product needs a name."
+    },
+    "catalog_rename": {
+      "message": "Products from the Coop catalogue cannot be renamed. Only the quantity can be changed."
+    },
+    "product_not_found": {
+      "message": "No product with the number {code} was found in the Coop catalogue."
+    }
+  },
+  "services": {
+    "add_product": {
+      "name": "Add Coop product",
+      "description": "Adds a product of the Coop catalogue by its product number. Such products are known to the Coop app and the Passabene self-scanner.",
+      "fields": {
+        "code": {
+          "name": "Product number",
+          "description": "Coop product number, for example 6554381."
+        },
+        "quantity": {
+          "name": "Quantity",
+          "description": "How many to add."
+        }
+      }
+    }
+  }
+}

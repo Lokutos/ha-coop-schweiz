@@ -1,0 +1,82 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Coop Schweiz – Anmeldung",
+        "description": "1. Die Anmeldeseite **am Computer** im Browser öffnen (nicht am Handy, sonst übernimmt die Coop-App die Anmeldung) und mit der Supercard ID anmelden:\n\n[Supercard-ID-Anmeldung öffnen]({auth_url})\n\n2. Nach dem Anmelden erscheint eine Fehlerseite. Das ist so vorgesehen. Die **ganze Adresse** aus der Adresszeile kopieren (sie enthält `code=`) und sofort unten einfügen. Der Code ist nur kurz gültig.",
+        "data": {
+          "redirect_url": "Adresse mit Code"
+        },
+        "data_description": {
+          "redirect_url": "Die vollständige Adresse der Seite, die nach dem Anmelden erscheint."
+        }
+      },
+      "list": {
+        "title": "Einkaufsliste wählen",
+        "data": {
+          "list_id": "Einkaufsliste"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Coop Schweiz – erneut anmelden",
+        "description": "Die Anmeldung ist abgelaufen. Die Anmeldeseite **am Computer** im Browser öffnen und mit derselben Supercard ID anmelden:\n\n[Supercard-ID-Anmeldung öffnen]({auth_url})\n\nDanach die **ganze Adresse** der Fehlerseite kopieren (sie enthält `code=`) und sofort unten einfügen.",
+        "data": {
+          "redirect_url": "Adresse mit Code"
+        },
+        "data_description": {
+          "redirect_url": "Die vollständige Adresse der Seite, die nach dem Anmelden erscheint."
+        }
+      }
+    },
+    "error": {
+      "auth": "Die Anmeldung wurde abgelehnt oder der Code ist abgelaufen. Den Link erneut öffnen und die frische Adresse sofort einfügen.",
+      "invalid_code": "In der Adresse steht kein Code. Die ganze Adresse der Seite kopieren, die nach dem Anmelden erscheint.",
+      "wrong_state": "Diese Adresse stammt aus einem anderen Anmeldeversuch. Den Link aus diesem Dialog verwenden.",
+      "cannot_connect": "Die Coop-Server sind nicht erreichbar. Bitte später nochmals versuchen.",
+      "api_error": "Die Coop-Server haben unerwartet geantwortet. Details stehen im Protokoll.",
+      "no_lists": "Auf diesem Konto wurde keine Einkaufsliste gefunden. Zuerst in der Coop-App eine Liste anlegen.",
+      "unknown": "Unerwarteter Fehler. Details stehen im Protokoll."
+    },
+    "abort": {
+      "already_configured": "Diese Liste ist bereits eingerichtet.",
+      "reauth_successful": "Erneut angemeldet.",
+      "wrong_account": "Diese Supercard ID hat keinen Zugriff auf die Liste dieses Eintrags. Mit dem bisherigen Konto anmelden."
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "Die Coop-Anmeldung ist abgelaufen. Bitte erneut anmelden."
+    },
+    "item_gone": {
+      "message": "Diesen Artikel gibt es auf der Coop-Liste nicht mehr."
+    },
+    "communication_error": {
+      "message": "Die Coop-Liste konnte nicht geändert werden: {error}"
+    },
+    "empty_name": {
+      "message": "Der Artikel braucht einen Namen."
+    },
+    "catalog_rename": {
+      "message": "Artikel aus dem Coop-Sortiment lassen sich nicht umbenennen. Nur die Menge kann geändert werden."
+    },
+    "product_not_found": {
+      "message": "Im Coop-Sortiment wurde kein Artikel mit der Nummer {code} gefunden."
+    }
+  },
+  "services": {
+    "add_product": {
+      "name": "Coop-Artikel hinzufügen",
+      "description": "Fügt einen Artikel aus dem Coop-Sortiment über seine Artikelnummer hinzu. Solche Artikel kennen die Coop-App und der Passabene-Scanner.",
+      "fields": {
+        "code": {
+          "name": "Artikelnummer",
+          "description": "Coop-Artikelnummer, zum Beispiel 6554381."
+        },
+        "quantity": {
+          "name": "Menge",
+          "description": "Wie viele hinzugefügt werden."
+        }
+      }
+    }
+  }
+}
