@@ -71,6 +71,14 @@ Add the integration again for further lists.
 
 ## Dashboard card
 
+<p>
+  <img src="docs/images/card-list.png" alt="Card with open and checked products" width="360">
+  <img src="docs/images/card-search.png" alt="Card with suggestions from the catalogue" width="360">
+</p>
+
+<sub>Example view with made-up products and drawn icons; the card shows the
+product pictures from coop.ch.</sub>
+
 The integration ships its own card; nothing has to be installed
 separately. Add a *Manual* card to a dashboard:
 

@@ -1,0 +1,111 @@
+<!doctype html>
+<!--
+  Demo page for the README screenshots of the dashboard card.
+  Uses a mocked Home Assistant with neutral example items; it makes no
+  network requests. Open it as file:// in a browser:
+    card-demo.html            list view
+    card-demo.html#search     search with suggestions
+  Screenshots (Chromium/Edge, headless), from the repository root:
+    msedge --headless --hide-scrollbars --force-device-scale-factor=2
+      --virtual-time-budget=2000 --window-size=440,600
+      --screenshot=docs/images/card-list.png
+      file:///<path>/docs/card-demo.html
+-->
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Coop Schweiz card demo</title>
+<style>
+  :root {
+    --primary-color: #03a9f4;
+    --primary-text-color: #e1e1e1;
+    --secondary-text-color: #9b9b9b;
+    --disabled-text-color: #6f6f6f;
+    --card-background-color: #1c1c1c;
+    --secondary-background-color: #282828;
+    --input-fill-color: #262626;
+    --divider-color: rgba(225, 225, 225, 0.12);
+    --error-color: #db4437;
+  }
+  html, body { margin: 0; background: #111111; }
+  body {
+    padding: 20px; font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 14px; color: var(--primary-text-color);
+  }
+  coop-schweiz-card { max-width: 400px; }
+</style>
+</head>
+<body>
+<coop-schweiz-card id="card"></coop-schweiz-card>
+
+<script>
+  // Minimal stand-in for Home Assistant's ha-card.
+  customElements.define("ha-card", class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: "open" }).innerHTML =
+        "<style>:host{display:block;background:var(--card-background-color);" +
+        "border-radius:12px;border:1px solid var(--divider-color)}</style><slot></slot>";
+    }
+  });
+</script>
+<script src="../custom_components/coop_schweiz/frontend/coop-schweiz-card.js"></script>
+<script>
+  const ENTITY = "todo.coop_schweiz_einkaufszettel";
+  const items = [
+    ["2× Vollmilch", "needs_action"],
+    ["Bananen", "needs_action"],
+    ["Vollkornbrot", "needs_action"],
+    ["3× Tomaten", "needs_action"],
+    ["Olivenöl", "needs_action"],
+    ["Kaffeebohnen", "completed"],
+    ["Butter", "completed"],
+  ].map(([summary, status], i) => ({ uid: String(i), summary, status }));
+
+  const hass = {
+    language: "de",
+    states: { [ENTITY]: { state: "5", attributes: { friendly_name: "Einkaufszettel" } } },
+    connection: {
+      subscribeMessage(callback) {
+        // Home Assistant delivers the first message asynchronously.
+        setTimeout(() => callback({ items }), 0);
+        return Promise.resolve(() => {});
+      },
+    },
+    callService: () => Promise.resolve(),
+    callWS: () => Promise.resolve({ products: [] }),
+  };
+
+  const card = document.getElementById("card");
+  card.setConfig({ type: "custom:coop-schweiz-card", entity: ENTITY });
+  card.hass = hass;
+
+  // Neutral drawn pictures instead of product photos.
+  const icon = (emoji, bg) =>
+    "data:image/svg+xml," + encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">` +
+      `<rect width="36" height="36" rx="6" fill="${bg}"/>` +
+      `<text x="18" y="25" font-size="20" text-anchor="middle">${emoji}</text></svg>`);
+
+  if (location.hash === "#search") {
+    const products = [
+      { code: "1", name: "Vollmilch UHT", content: "1 l", pic: icon("🥛", "#e3f2fd") },
+      { code: "2", name: "Bio Vollmilch pasteurisiert", content: "1 l", pic: icon("🥛", "#e8f5e9") },
+      { code: "3", name: "Milchdrink laktosefrei", content: "1 l", pic: icon("🥛", "#fff3e0") },
+      { code: "4", name: "Milchschokolade", content: "100 g", pic: icon("🍫", "#efebe9") },
+      { code: "5", name: "Milchreis Vanille", content: "4 × 125 g", pic: icon("🍮", "#fffde7") },
+    ];
+    card._input.value = "Milch";
+    card._query = "Milch";
+    card._open = true;
+    card._products = products;
+    card._active = 1;
+    card._renderSuggest();
+    card.shadowRoot.querySelectorAll(".suggest img").forEach((img, i) => {
+      img.src = products[i].pic;
+    });
+    card._input.style.borderColor = "var(--primary-color)";
+  }
+</script>
+</body>
+</html>

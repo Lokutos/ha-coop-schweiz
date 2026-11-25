@@ -71,6 +71,14 @@ Für weitere Listen die Integration nochmals hinzufügen.
 
 ## Dashboard-Karte
 
+<p>
+  <img src="docs/images/card-list.png" alt="Karte mit offenen und erledigten Artikeln" width="360">
+  <img src="docs/images/card-search.png" alt="Karte mit Vorschlägen aus dem Sortiment" width="360">
+</p>
+
+<sub>Beispielansicht mit erfundenen Artikeln und gezeichneten Symbolen; die
+Karte zeigt die Produktbilder von coop.ch.</sub>
+
 Die Integration liefert ihre Karte selbst mit, es muss nichts separat
 installiert werden. Im Dashboard eine Karte *Manuell* hinzufügen:
 
